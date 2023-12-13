@@ -13,3 +13,11 @@ jobs:
           working_directory: draft
       - name: ls
         run: ls; ls draft
+      - name: deploy
+        run: mkdir draft/build && mv draft/draft.pdf draft/build
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: draft/build
+          publish_branch: build
+          force_orphan: true
