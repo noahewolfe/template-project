@@ -22,14 +22,17 @@ jobs:
         working-directory: ${{env.DIR}}
         run: |
           pdflatex -interaction=nonstopmode ${{env.FILE}}
-          bibtex ${{env.FILE}}
-          pdflatex -interaction=nonstopmode ${{env.FILE}}
-          pdflatex -interaction=nonstopmode ${{env.FILE}}
+          if bibtex ${{env.FILE}}; then
+            pdflatex -interaction=nonstopmode ${{env.FILE}}
+            pdflatex -interaction=nonstopmode ${{env.FILE}}
+          fi
 
       - name: push
         run: |
           mv draft/draft.pdf .
-          git push -d origin build
+          if git show-ref --quiet remotes/origin/build; then
+            git push -d origin build
+          fi
           git checkout -b build
           git add draft.pdf
           git commit -m 'build'
