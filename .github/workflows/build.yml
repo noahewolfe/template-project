@@ -34,7 +34,7 @@ jobs:
           if git show-ref --quiet remotes/origin/build; then
             git push -d origin build
           fi
-          git checkout -b build
+          git switch --orphan build
           mv draft/draft.pdf .
           git add draft.pdf
           git commit -m 'build'
