@@ -10,7 +10,7 @@ jobs:
  
     steps:
 
-      - name: checkout
+      - name: repo
         uses: actions/checkout@v4
 
       - name: texlive
@@ -20,13 +20,11 @@ jobs:
         working-directory: ${{env.DIR}}
         run: pdflatex ${{env.FILE}} && bibtex ${{env.FILE}} && pdflatex ${{env.FILE}} && pdflatex ${{env.FILE}}
 
-      - name: mv
-        run: mkdir build && mv draft/draft.pdf build
-
-      - name: deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: draft/build
-          publish_branch: build
-          force_orphan: true
+      - name: push
+        run: |
+          mv draft/draft.pdf .
+          git push -d origin build
+          git checkout -b build
+          git add draft.pdf
+          git commit -m 'build'
+          git push
