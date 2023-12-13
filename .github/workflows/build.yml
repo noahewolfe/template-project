@@ -4,17 +4,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
       - name: checkout
         uses: actions/checkout@v4
+
       - name: latex
         uses: dante-ev/latex-action@latest
         with:
           root_file: draft.tex
           working_directory: draft
-      - name: ls
-        run: ls; ls draft
+
+      - name: mv
+        run: mkdir draft/build && mv draft/draft.pdf draft/build && ls; ls draft; ls draft/build
+
       - name: deploy
-        run: mkdir draft/build && mv draft/draft.pdf draft/build
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
