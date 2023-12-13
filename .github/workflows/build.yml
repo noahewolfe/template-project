@@ -1,0 +1,15 @@
+name: build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: latex
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: draft.tex
+          working_directory: draft
+      - name: ls
+        run: ls; ls draft
