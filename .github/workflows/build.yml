@@ -38,4 +38,4 @@ jobs:
           mv draft/draft.pdf .
           git add draft.pdf
           git commit -m 'build'
-          git push
+          git push --set-upstream origin build
