@@ -3,19 +3,25 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      DIR: draft
+      FILE: draft
+ 
     steps:
 
       - name: checkout
         uses: actions/checkout@v4
 
+      - name: texlive
+        run: sudo apt-get update && sudo apt-get install texlive texlive-publishers texlive-science
+
       - name: latex
-        uses: dante-ev/latex-action@latest
-        with:
-          root_file: draft.tex
-          working_directory: draft
+        working-directory: ${{env.DIR}}
+        run: pdflatex ${{env.FILE}} && bibtex ${{env.FILE}} && pdflatex ${{env.FILE}} && pdflatex ${{env.FILE}}
 
       - name: mv
-        run: mkdir draft/build && mv draft/draft.pdf draft/build && ls; ls draft; ls draft/build
+        run: mkdir build && mv draft/draft.pdf build
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
