@@ -29,11 +29,13 @@ jobs:
 
       - name: push
         run: |
-          mv draft/draft.pdf .
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           if git show-ref --quiet remotes/origin/build; then
             git push -d origin build
           fi
           git checkout -b build
+          mv draft/draft.pdf .
           git add draft.pdf
           git commit -m 'build'
           git push
