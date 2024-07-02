@@ -1,6 +1,6 @@
 \documentclass[
 aps,
-prd,
+prl,
 reprint,
 groupedaddress,
 %superscriptaddress,
@@ -17,6 +17,13 @@ amsmath,
 \bibliographystyle{apsrev4-2}
 
 \usepackage{orcidlink}
+
+\usepackage{titlesec}
+\titleformat{\section}[runin]{\it}{\thesection}{0pt}{\phantomsection}[.---]
+\titlespacing{\section}{\parindent}{\parskip}{-\parskip}
+
+\let\oldacknowledgments\acknowledgments
+\renewcommand{\acknowledgments}{\vspace{\baselineskip}\oldacknowledgments}
 
 \hypersetup{hidelinks}
 
