@@ -1,0 +1,59 @@
+\documentclass[
+aps,
+prd,
+reprint,
+groupedaddress,
+superscriptaddress,
+linenumbers,
+nolongbibliography,
+amssymb,
+amsmath,
+nobibnotes,
+nofootinbib,
+eprint,
+floats,
+]{revtex4-2}
+
+\bibliographystyle{apsrev4-2}
+
+\usepackage{orcidlink}
+
+\hypersetup{hidelinks}
+
+\newcommand{\comment}[1]{}
+\newcommand{\rednote}[1]{{\color{Red} #1}}
+\newcommand{\mm}[1]{{\color{cyan}MM: #1}}
+
+\newcommand{\ligo}{\affiliation{LIGO Laboratory, Massachusetts Institute of Technology, Cambridge, MA 02139, USA}}
+\renewcommand{\mit}{\affiliation{Kavli Institute for Astrophysics and Space Research and Department of Physics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA}}
+
+\begin{document}
+
+\title{Title}
+
+\author{Matthew Mould\,\orcidlink{0000-0001-5460-2910}}
+\email{mmould@mit.edu}
+\ligo \mit
+
+\date{\today}
+
+\begin{abstract}
+
+I'm an abstract.
+
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+The introduction.
+
+\acknowledgments
+
+M.M. is supported by the LIGO Laboratory through the National Science Foundation award PHY-1764464.
+
+\bibliography{draft}
+
+\end{document}
+
