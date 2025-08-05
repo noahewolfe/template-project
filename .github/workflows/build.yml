@@ -32,6 +32,7 @@ jobs:
         run: |
           pdflatex -interaction=nonstopmode ${{env.FILE}}
           if bibtex ${{env.FILE}}; then
+            bibtex ${{env.FILE}}
             pdflatex -interaction=nonstopmode ${{env.FILE}}
             pdflatex -interaction=nonstopmode ${{env.FILE}}
           fi
